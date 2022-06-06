@@ -1,0 +1,167 @@
+.ctn_user_popPup{
+  position: fixed;
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.452);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+.user_info{
+  position: fixed;
+  z-index: 6;
+  display: flex;
+  background: linear-gradient(to right,rgb(76, 0, 130),rgba(255, 255, 255, 0.603)),url("../images/imagefond\ \(1\).jpeg") no-repeat center/cover white;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 800px;
+  padding: 30px 0 30px 30px;
+  border-radius: 10px;
+}
+.ctn-user-logo{
+  margin-right: 20px;
+  width: 35%;
+}
+.ctn_logo_element{
+  width: 100%;
+  position: relative;
+  border-radius: 50%;
+}
+.ctn-user-logo img.user_icon{
+  border-radius: 50%;
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+.ctn-user-logo img.ic_camera{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  display: none;
+}
+.ctn_logo_element:hover img{
+  display: block;
+}
+.ctn_logo_element:hover .bgImg{
+  display: block;
+}
+.ctn-user-logo #idfile{
+   position: absolute;
+   top:50%;
+   left: 50%;
+   width: 80%;
+   height: 100%;
+   background: red;
+   border-radius: 50%;
+   transform: translate(-50%,-50%);
+   opacity: 0;
+   cursor: pointer;
+   z-index:2;
+}
+.ctn-user-logo nav ul{
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+.ctn-user-logo nav li{
+  background:white url("../images/book_mark.png") no-repeat;
+  background-position: 10px center;
+  color: white;
+  height: 40px;
+  text-align: center;
+  align-items:center;
+  border-radius: 6px;
+  width:90%;
+  color:indigo;
+  margin: auto;
+}
+.bgImg {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.46);
+  top: 0;
+  left: 50%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.ctn-user-logo a{
+    color: inherit;
+    text-decoration: none;
+    padding-left: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.ctn-user-logo a:after{
+    position: absolute;
+    top:50%;
+    right:10px;
+    transform: translateY(-50%);
+    content: attr(data-favoris);
+    text-align: center;
+    border-radius: 50%;
+    background: red;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+    
+}
+.ctn-user-element {
+  width: 50%;
+  position: relative;
+  
+}
+.ctn-user-element h3{
+  font-weight: bold;
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.ctn-user-element .ctn-edit_elemt{
+  display: flex;
+  align-items: center;
+}
+.ctn-user-element button,input[type="button"]{
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.ctn-edit_elemt{
+  position: relative;
+}
+.ctn-edit_elemt .icon_edit{
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  right: 70px;
+}
+.ctn-edit_elemt .icon_edit img{
+  margin-left: 5px;
+  cursor: pointer;
+}
+.ctn-user-element .btn-action{
+  position: absolute;
+  bottom: 10px;
+  right: 70px;
+}
+.ctn-user-element .cancel-btn{
+  background: red;
+}
+.ctn-user-element .save-btn{
+  background: green;
+}
