@@ -10,6 +10,17 @@
         if($prod_panier_req->execute()){
             $nbrprodpanier= $prod_panier_req->rowCount();
         }
+        $affiche_user =$bdd->prepare('SELECT * FROM users WHERE id=:userid');
+        $affiche_user->bindParam(':userid',$userid);
+        if($affiche_user->execute()){
+            $userprofil=$affiche_user->fetch();
+        }
+        $prod_favoris_req =$bdd->prepare('SELECT * FROM user_favoris WHERE user=:userid');
+        $prod_favoris_req->bindParam(':userid',$userid);
+        if($prod_favoris_req->execute()){
+            $nbrprodfavoris= $prod_favoris_req->rowCount();
+        }
+
     }
 ?>
 <!DOCTYPE html>
@@ -51,21 +62,21 @@
     </div>
     <nav>
         <ul>
-            <li><a data-favoris="0" href="php/Myfavoris.php">Voir mes favoris</a></li>
+            <li class="profil_favoris" ><a data-favoris="<?=$nbrprodfavoris;?>" href="php/Myfavoris.php">Voir mes favoris</a></li>
         </ul>
     </nav>    
 </div>
-<form class="ctn-user-element" action="userUpdate.php" method="POST">
+<form class="ctn-user-element" action="php/userUpdate.php" method="POST">
     <div class="ctn-input">
         <label class="fielsetInput" for="idfirstpassword">Username</label>
-        <input type="text" value="user">
+        <input type="text" value="<?=$userprofil['username']?>">
     </div>
     <div class="ctn-input">
         <label class="fielsetInput" for="idfirstpassword">password</label>
-        <input type="text" value="user">
+        <input type="text" name="password_forget" value="">
     </div>
     <div class="btn-action">
-        <button class="save-btn" type="submit">Ok</button>
+        <button class="save-btn" name='change_password' type="submit">Ok</button>
         <input type="button" class="cancel-btn" onclick="closePopup();" value="Annuler"/>
     </div>
 </form>
@@ -87,8 +98,7 @@
                     <li><a href="index.php" class="active">Accueil</a></li>
                     <li><a href="php/contact.php">Contact</a></li>
                     <li><a href="php/about.php">A propos</a></li>
-                    <li class='userPopUpC'><img src="images/logo-user.png" id="userPopUp"/></li>
-                    <input type="hidden" name='connexion' data-="<?php if(isset($_SESSION['id_user'])) echo'1'?>";>
+                    <li class='userPopUpC' data-connexion="<?php if(isset($_SESSION['id_user'])){echo'1';}else{echo'0';}?>";><img src="images/logo-user.png" id="userPopUp"/></li>
                 </ul>
             </nav>
         </header>
@@ -208,25 +218,40 @@
             });
             
         $('.btn_pan').click(function()
-        {
-            var num_prod_panier=0;
-            var e=document.getElementsByClassName('panier')[0];
-            num_prod_panier=parseInt(e.getAttribute('data-count'));
-            e.setAttribute('data-count',num_prod_panier+1);
-            var id_prod=this.getAttribute('id');
-            $.post('php/addPanier.php',{id_prod:id_prod});
+        {   
+            var con=parseInt(document.getElementsByClassName('userPopUpC')[0].getAttribute('data-connexion'));
+            
+            if(con==0){
+                window.location.href='php/loginSignUp.php';
+            }else{
+                var num_prod_panier=0;
+                var e=document.getElementsByClassName('panier')[0];
+                num_prod_panier=parseInt(e.getAttribute('data-count'));
+                e.setAttribute('data-count',num_prod_panier+1);
+                var id_prod=this.getAttribute('id');
+                $.post('php/addPanier.php',{id_prod:id_prod});
+            }
         });
-        $('.btn_fav').click(function()
-        {
-            var id_prod=this.getAttribute('id');
-            $.post('php/addFavoris.php',{id_prod:id_prod});
+        $('.btn_fav').click(function(){
+            var con=parseInt(document.getElementsByClassName('userPopUpC')[0].getAttribute('data-connexion')); 
+            if(con==0){
+                window.location.href='php/loginSignUp.php';
+            }else{
+                var num_prod_favoris=0;
+                var e=document.getElementsByClassName('profil_favoris')[0].getElementsByTagName('a')[0];
+                num_prod_favoris=parseInt(e.getAttribute('data-favoris'));
+                e.setAttribute('data-favoris',num_prod_favoris+1);
+                var id_prod=this.getAttribute('id');
+                $.post('php/addFavoris.php',{id_prod:id_prod});
+            }
+            
         });
         $('.userPopUpC').click(function()
         {
-            if(connexion==0){
+            var con=parseInt(this.getAttribute('data-connexion'));
+            if(con==0){
                 window.location.href='php/loginSignUp.php';
             }
-            
         });
         $('#idsearch').change(function()
         {

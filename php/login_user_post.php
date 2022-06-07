@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once '../config.php';
+    require_once 'config.php';
     // tester si l'utilisateur est deja connecter
     if(isset($_SESSION["loggedin_user"]) && $_SESSION["loggedin_user"]==true && $_SESSION["username_user"]==$_SESSION["getusername_user"] && $_SESSION["id_user"]==$_SESSION["getid_user"])
     {
@@ -14,7 +14,7 @@
         
         if(empty(securiser($_POST["username_login"])))
         {
-            ?><script> var error="Entrer votre nom d'utilisateur";</script><?php
+            echo "Entrer votre nom d'utilisateur";
         }else{
             //securiser le champ nom d'utilisateur
             $username=securiser($_POST["username_login"]);
@@ -22,13 +22,13 @@
         // tester si le mot de passe est definie
         if(empty(securiser($_POST["password_login"])))
         {
-            $password_err="Entrer votre mot de passe s'il vous plai ";
+            $password_err="Entrer votre mot de passe s'il vous plait ";
         }else{
             $password=securiser($_POST["password_login"]);
         }
         if(empty($username_err) && empty($password_err))
         {
-            $sql="SELECT id,username,password FROM users WHERE username = :username";
+            $sql="SELECT id,username,password FROM users WHERE username =:username";
             
             if($requete=$bdd->prepare($sql))
             {
@@ -56,20 +56,18 @@
                                 $_SESSION["getusername_user"]=$username;
                                 // redirection vers acceuil admin
                                 header("Location: ../index.php");
-
                             }else{
-                                // mot de passe incorrect
-                                ?><script>var errorbol=false; var failure='moyen'; var error="mot de passe incorrect";</script><?php
+                                header("Location: loginSignUp.php");
                             }
+                        }else{
+                            header("Location: loginSignUp.php");
                         }  
-
                     }else{
-                        //le nom d'utilisateur n'existe pas
-                        ?><script> var errorbol=false; var failure='grave'; var error=" le nom d'utilisateur ou mot de passe incorect";</script><?php
-                        }
-                    
+                        header("Location: loginSignUp.php");
+                    }    
                 }else{
-                    ?><script> var errorbol=false; var failure='attention'; var error="Oops ! une erreur est survenue ! veillez réessayer plus tard";</script><?php
+                    echo "Oops ! une erreur est survenue ! veillez réessayer plus tard";
+                    header("Location: loginSignUp.php");
                 }
                     // fermeture requete
                     unset($requete);
@@ -77,5 +75,5 @@
             }
             //déconnexion à la bdd
             unset($bdd);
-        }  
+    }  
 ?>

@@ -539,6 +539,7 @@ footer .navigation-content{
 .ctn-input .fielsetInput{
     color: white;
 }
+<<<<<<< HEAD
 .ctn-element-view{
     position: fixed;
     top:0;
@@ -552,3 +553,8 @@ footer .navigation-content{
     margin: auto;
 }
 /*style panier */
+=======
+.load_connexion{
+    display:none;
+}
+>>>>>>> 16c3d35a12c2063ebc0005add6818e164c93f46b

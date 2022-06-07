@@ -195,7 +195,8 @@
     <?php 
     } else {
         header('Location: loginSignUp.php');
-    } ?>
+    } 
+    ?>
     <script>
     var fromPan=document.getElementsByClassName("from_panier")[0];
     var pan=fromPan.getElementsByClassName("table_panier")[0];
