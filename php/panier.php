@@ -1,10 +1,9 @@
 <?php
     session_start();
-    if( 1 ||isset($_SESSION["loggedin_user"]) && $_SESSION["loggedin_user"]==true && $_SESSION["username_user"]==$_SESSION["getusername_user"] && $_SESSION["id_user"]==$_SESSION["getid_user"])
+    if(isset($_SESSION["loggedin_user"]) && $_SESSION["loggedin_user"]==true && $_SESSION["username_user"]==$_SESSION["getusername_user"] && $_SESSION["id_user"]==$_SESSION["getid_user"])
     {
-    require_once 'config.php'; 
-    if(isset($_POST['commander'])){
-        $_SESSION['id_user']=1;
+        require_once 'config.php'; 
+        if(isset($_POST['commander'])){
         $userid=securiser($_SESSION['id_user']);
         $adresse=securiser($_POST['adresse_client']);
         date_default_timezone_set("Africa/Douala");

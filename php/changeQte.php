@@ -3,7 +3,7 @@
   {
     session_start();
     require_once 'config.php';
-        $_SESSION['id_user']=1;
+        
         $qte_prod=securiser($_POST['qte_prod']);
         $id_prod=securiser($_POST['id_prod']);
         $user=securiser($_SESSION['id_user']);

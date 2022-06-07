@@ -2,8 +2,8 @@
     session_start();
     require_once 'config.php';
     $nbr_favoris=0;
-    
-        $_SESSION['id_user']=1;
+    if(isset($_SESSION["loggedin_user"]) && $_SESSION["loggedin_user"]==true && $_SESSION["username_user"]==$_SESSION["getusername_user"] && $_SESSION["id_user"]==$_SESSION["getid_user"])
+    {
         $userid=securiser($_SESSION['id_user']);
         $affiche_favoris =$bdd->prepare('SELECT * FROM user_favoris WHERE user=:userid');
         $affiche_favoris->bindParam(':userid',$userid);
@@ -137,3 +137,8 @@
     </div>
 </body>
 </html>
+<?php
+    } else {
+        header('Location: loginSignUp.php');
+    } 
+?>

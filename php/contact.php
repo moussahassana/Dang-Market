@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    session_start();
+    if(isset($_POST['submit'])){
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $message=$_POST['message'];
+    }
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,10 +55,10 @@
                 </div>
                 <form class="ctn_user_contact" action="#" method="POST">
                     <h3 class="t_element">Vos informations :</h3>
-                    <input type="text" placeholder="votre nom"/>
+                    <input type="text" name='name' placeholder="votre nom"/>
                     <input type="email" name="email" id="idmail" placeholder="votre em@il"/>
-                    <textarea name="textarray" id="idText" cols="30" rows="10" placeholder="saisir votre message"></textarea>
-                    <button class="btn" type="submit">Envoyer</button>
+                    <textarea name="message" id="idText" cols="30" rows="10" placeholder="saisir votre message"></textarea>
+                    <button class="btn" type="submit" name='submit'>Envoyer</button>
                 </form>
             </div>
         </main>

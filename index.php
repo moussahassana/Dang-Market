@@ -223,7 +223,7 @@
         });
         $('.userPopUpC').click(function()
         {
-            if(econnexion==0){
+            if(connexion==0){
                 window.location.href='php/loginSignUp.php';
             }
             
