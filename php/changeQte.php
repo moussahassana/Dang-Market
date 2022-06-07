@@ -12,7 +12,7 @@
         $update_qte_prod_panier->bindParam(':user',$user);
         $update_qte_prod_panier->bindParam(':id_prod',$id_prod);
         $update_qte_prod_panier->execute();
-  }else{
+  }else{ 
       header('Location:loginSignUp.php')
   }
 
