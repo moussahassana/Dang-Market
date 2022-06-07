@@ -11,6 +11,8 @@ Pour lancer le projet :
 Ce rendre sur l'adresse __localhost/Dang-Market/php/admin__
 puis fournir les information suivantes :
 > Nom : **admin**
+
 > Mot de passe : **admin**
+
 puis explorer la partie __administration__ ;)
 # Bonne Execution
