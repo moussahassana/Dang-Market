@@ -1,7 +1,7 @@
 # Dang-Market
 Pour lancer le projet :
 1. Clonez le projet
-2. Installer xampp si vous n'est l'avais pas installer 
+2. Installer xampp si vous ne l'avais pas installer 
 3. Deplacer le dossier du projet dans le repertoire htdocs de xampp
 4. Lancer xampp et demarrer les serveurs **Apache** et **MySQL**
 5. Creer la base de donnee **__dang_market__**
@@ -11,6 +11,8 @@ Pour lancer le projet :
 Ce rendre sur l'adresse __localhost/Dang-Market/php/admin__
 puis fournir les information suivantes :
 > Nom : **admin**
+
 > Mot de passe : **admin**
+
 puis explorer la partie __administration__ ;)
 # Bonne Execution
