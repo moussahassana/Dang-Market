@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 06 juin 2022 à 13:17
+-- Généré le : mar. 07 juin 2022 à 07:37
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.9
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `dang_market`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `date_creation` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `date_creation`) VALUES
+(1, 'admin', '$2y$10$eGpA/r29a0FPlHFWubgbF.5tE7aWZNp3aPgKhrN7DqoSlH.f7hH.K', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,46 +80,6 @@ CREATE TABLE `commande` (
   `statut` char(3) NOT NULL DEFAULT 'Non'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `commande`
---
-
-INSERT INTO `commande` (`numcom`, `totalcom`, `nomclient`, `tel`, `adresse`, `tempscom`, `statut`) VALUES
-('12024330', 100, 'es', '68894', 'adresse', '2022-06-05 20:07:58', 'Non'),
-('17414306', 100, 'es', '68894', 'adresse', '2022-06-05 20:26:40', 'Non'),
-('29675075', 100, 'es', '68894', 'adresse', '2022-06-05 20:26:43', 'Non'),
-('30456676', 100, 'es', '68894', 'adresse', '2022-06-05 20:25:37', 'Oui'),
-('35607389', 100, 'es', '68894', 'adresse', '2022-06-05 20:27:38', 'Non'),
-('36087089', 100, 'es', '68894', 'adresse', '2022-06-05 20:27:46', 'Non'),
-('41446033', 100, 'es', '68894', 'adresse', '2022-06-05 20:23:16', 'Non'),
-('50815808', 100, 'es', '68894', 'adresse', '2022-06-05 20:26:07', 'Oui'),
-('75607610', 100, 'es', '68894', 'adresse', '2022-06-05 20:25:33', 'Non'),
-('86033610', 100, 'es', '68894', 'adresse', '2022-06-05 20:26:41', 'Non');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `favoris`
---
-
-CREATE TABLE `favoris` (
-  `id` int(11) NOT NULL,
-  `user` int(11) NOT NULL,
-  `produit` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `online`
---
-
-CREATE TABLE `online` (
-  `id` int(11) NOT NULL,
-  `time` int(11) NOT NULL,
-  `user_ip` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 -- --------------------------------------------------------
 
 --
@@ -113,14 +93,6 @@ CREATE TABLE `panier` (
   `qte` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`id`, `user`, `produit`, `qte`) VALUES
-(1, 1, 77, 2),
-(2, 1, 68, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -130,6 +102,7 @@ INSERT INTO `panier` (`id`, `user`, `produit`, `qte`) VALUES
 CREATE TABLE `prodcom` (
   `id` int(11) NOT NULL,
   `numcom` varchar(40) NOT NULL,
+  `image` varchar(100) NOT NULL,
   `nomprod` varchar(40) NOT NULL,
   `prixprod` int(11) NOT NULL,
   `qteprod` int(11) NOT NULL,
@@ -199,26 +172,46 @@ INSERT INTO `produits` (`id`, `categorie`, `image`, `nom`, `prix`, `description`
 (79, 2, '3412290001372 - Lait Fermenté PB - JPG BD site web.png', 'PUYSAN BRETON', 2000, 'LE LAIT FERMENTE', NULL),
 (80, 2, 'sotigroup-dolait-yaourt-zoom.png', 'DOLAIT', 350, 'LAIT DE DOLAIT', NULL),
 (81, 2, 'sotigroup-laitcaille-zoom.png', 'DOFAIT', 3000, 'LE LAIT CALAIT FRAISE', NULL),
-(82, 2, 'téléchargement.png', 'PRESIDENT', 600, 'LE LAIT DE BOEURE,DOUX GASTRONOMIQUE', NULL);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `slider`
---
-
-CREATE TABLE `slider` (
-  `id` int(11) NOT NULL,
-  `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `slider`
---
-
-INSERT INTO `slider` (`id`, `image`) VALUES
-(1, '1.jpg'),
-(2, '2.jpg');
+(82, 2, 'téléchargement.png', 'PRESIDENT', 600, 'LE LAIT DE BOEURE,DOUX GASTRONOMIQUE', NULL),
+(83, 1, '1.jpg', 'CARPE', 1500, 'carpe toute fraiche disponible', NULL),
+(84, 1, 'IMG_2414.JPG', 'MAQUEREAU', 1500, 'disponible uniquement pour un achat apartir de 5 maquereau', NULL),
+(85, 1, 'IMG_2415.JPG', 'machoiron', 1000, 'machoiron en stock vendu par kg', NULL),
+(86, 1, 'IMG_2416.JPG', 'CILLURE', 800, 'poisson d\'eau douce vendu au prix de 1', NULL),
+(88, 1, 'IMG_2417.JPG', 'CAPITAINE', 1200, 'poisson aux ecailles argentes', NULL),
+(89, 1, 'IMG_2422.JPG', 'CUISSE DE POULET', 700, 'cuisse de poulet vendu au prix unique de 700', NULL),
+(90, 1, 'IMG_2423.JPG', 'gesier', 2000, 'disponible vendu en stock de 5', NULL),
+(91, 1, 'IMG_2425.JPG', 'PARTIE HAUT DE CUISSE', 1500, 'partie haut de cuisse disponible uniquement apartir d\'une quantite de 3', NULL),
+(92, 1, 'IMG_2428.JPG', 'CARACASSE DE BOEUF', 120000, 'compose de la poitrine et de la cuisse avant et arriere', NULL),
+(93, 1, 'IMG_2429.PNG', 'CUISSE DE MOUTON', 20000, 'cuisse de mouton disponible', NULL),
+(94, 1, 'IMG_2430.JPG', 'POITRINE DE BOEUF', 15000, 'Disponible en qualite frais', NULL),
+(95, 1, 'IMG_2432.JPG', 'FOIE DE BOEUF', 2500, 'qualite frais d\'une disponibilite inferieur ou egale a 2 jrs', NULL),
+(96, 1, 'IMG_2433.JPG', 'ROGNON', 3000, 'Vendu en quantite de 2 au prix unique de 3000', NULL),
+(97, 1, 'IMG_2434.JPG', 'CUISSE DE CHEVRE', 10000, 'cuisse de chevre disponible', NULL),
+(98, 1, 'IMG_2436.JPG', 'CHEVRE ENTIER', 25000, 'chevre entier excepte les parties interieurs.', NULL),
+(99, 1, 'IMG_2438.JPG', 'PLATEAUX D\'OEUFS', 1800, 'plateau constitue de 30 oeufs.', NULL),
+(100, 1, 'IMG_2439.JPG', 'PLATEAUX D\'OEUFS DE CANARDS', 1500, 'plateau constitue de 25 oeufs de canards', NULL),
+(101, 2, 'Nido.png', 'Poudre Nido', 3100, 'nourissant et fortifiant', NULL),
+(102, 2, 'calin.png', 'Calin', 850, 'produit extra fondant', NULL),
+(103, 2, 'beure.png', 'Beurre de Montagne', 700, 'beurre de qualite tres doux', NULL),
+(105, 2, 'cerelac.png', 'CERELAC', 2700, 'produit pour enfant. tres bon et Nourissant', NULL),
+(106, 2, 'jadida.png', 'jadida', 750, 'beurre familial 900g net', NULL),
+(109, 2, 'camlait.png', 'Camlait', 450, 'yaourt vanille tres Bon', NULL),
+(111, 2, 'dolait.png', 'yaout camlait', 600, 'yaourt des mature tres bon pour l\'organisme', NULL),
+(112, 2, 'Nousriss.png', 'NOURISS Soja', 350, 'naturel et nourrissant', NULL),
+(113, 2, 'sotigroup-dolait-yaourt-zoom.png', 'Dolait', 750, 'dolait gout mangue', NULL),
+(114, 4, 'AVOINE PETIT.png', 'AVOINE PETIT', 4500, 'riche en vibre alimentaire', NULL),
+(115, 4, 'BLE DUR.png', 'BLE DUR', 3000, 'riche en proteine y compris en gluten', NULL),
+(116, 4, 'BLE TENDRE.png', 'BLE TENDRE', 2200, 'Ble utilise pour faire de la farine', NULL),
+(118, 2, 'lait barb.png', 'lait babeurre', 350, '', NULL),
+(119, 4, 'MAÏS JAUNE.png', 'MAÏS JAUNE', 10000, 'vendu en sac de 25kg. riche en amidon.', NULL),
+(121, 4, 'FONIO.png', 'FONIO', 700, 'plante annuelle herbacee', NULL),
+(122, 4, 'MAIS BLANC.png', 'MAÏS BLANC', 9500, 'vendu en sac de 25 kg. genereralment considere comme une categorie de mais blanc.', NULL),
+(124, 4, 'MIL BLANC.png', 'MIL BLANC', 5000, 'presentent une teneur interessante en proteine et sont composes d\'acides amines', NULL),
+(125, 4, 'MIL JAUNE.png', 'MIL JAUNE', 3000, 'riches en phosphore et en magnesium.', NULL),
+(126, 4, 'MIL ROUGE.png', 'MIL ROUGE', 700, 'Riche en vitamine A,B,C,E.', NULL),
+(127, 4, 'RIZ LOCAL.png', 'RIZ LOCAL', 7000, 'Du Riz propre qui n\'a nul besoin de tri et/ou de vannage.', NULL),
+(128, 4, 'RIZ PARFUME.png', 'riz parfume', 9500, 'ris au grain long naturellement parfume', NULL),
+(129, 4, 'SORGHO.png', 'SORGHO', 4800, 'riche en minerais. sa bonne tenneur en phosphore en fait un aliment dynamisant et excellent pour l\'o', NULL);
 
 -- --------------------------------------------------------
 
@@ -230,35 +223,40 @@ CREATE TABLE `users` (
   `id` int(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `tel` varchar(9) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `tel` char(9) NOT NULL,
-  `localisation` varchar(50) NOT NULL,
-  `date_creation` datetime NOT NULL,
-  `type` varchar(100) NOT NULL
+  `date_creation` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `tel`, `localisation`, `date_creation`, `type`) VALUES
-(1, 'es', 'moussahassana42@gmail.com', '$2y$10$MlSSVpAQzb74op0fqEbN1emyzW5VlC1WQr7Iddbd3ttB/9jS2kz3K', '68894', '', '0000-00-00 00:00:00', 'admin');
+INSERT INTO `users` (`id`, `username`, `email`, `tel`, `password`, `date_creation`) VALUES
+(1, 'user', 'moussahassana42@gmail.com', '', '$2y$10$VP256Svq2BN4T61i.NM.cujUHHdd3nmGLxoq4BYe7z497JlfEA0Ca', '0000-00-00 00:00:00'),
+(13, 'elbachir', 'user@gmail.com', '69058561', '$2y$10$Yzxo4YDP9.WNMsE/3G4dkuQ0Kl/aA2ndCJTk5A1kjd76i7pWFH3JC', '2022-06-07 06:25:51');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `visited`
+-- Structure de la table `user_favoris`
 --
 
-CREATE TABLE `visited` (
+CREATE TABLE `user_favoris` (
   `id` int(11) NOT NULL,
-  `user_ip_annee` varchar(255) NOT NULL,
-  `annee` year(4) NOT NULL
+  `user` int(11) NOT NULL,
+  `produit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `categorie_prod`
@@ -271,20 +269,6 @@ ALTER TABLE `categorie_prod`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`numcom`);
-
---
--- Index pour la table `favoris`
---
-ALTER TABLE `favoris`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `produit` (`produit`),
-  ADD KEY `user` (`user`);
-
---
--- Index pour la table `online`
---
-ALTER TABLE `online`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `panier`
@@ -309,44 +293,34 @@ ALTER TABLE `produits`
   ADD KEY `categorie` (`categorie`);
 
 --
--- Index pour la table `slider`
---
-ALTER TABLE `slider`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `visited`
+-- Index pour la table `user_favoris`
 --
-ALTER TABLE `visited`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user_favoris`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produit` (`produit`),
+  ADD KEY `user` (`user`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
+-- AUTO_INCREMENT pour la table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `categorie_prod`
 --
 ALTER TABLE `categorie_prod`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `favoris`
---
-ALTER TABLE `favoris`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `online`
---
-ALTER TABLE `online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `panier`
@@ -358,31 +332,55 @@ ALTER TABLE `panier`
 -- AUTO_INCREMENT pour la table `prodcom`
 --
 ALTER TABLE `prodcom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
---
--- AUTO_INCREMENT pour la table `slider`
---
-ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT pour la table `visited`
+-- AUTO_INCREMENT pour la table `user_favoris`
 --
-ALTER TABLE `visited`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_favoris`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`produit`) REFERENCES `produits` (`id`);
+
+--
+-- Contraintes pour la table `prodcom`
+--
+ALTER TABLE `prodcom`
+  ADD CONSTRAINT `prodcom_ibfk_1` FOREIGN KEY (`numcom`) REFERENCES `commande` (`numcom`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD CONSTRAINT `produits_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie_prod` (`id`);
+
+--
+-- Contraintes pour la table `user_favoris`
+--
+ALTER TABLE `user_favoris`
+  ADD CONSTRAINT `user_favoris_ibfk_1` FOREIGN KEY (`produit`) REFERENCES `produits` (`id`),
+  ADD CONSTRAINT `user_favoris_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

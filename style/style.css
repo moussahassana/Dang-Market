@@ -539,5 +539,6 @@ footer .navigation-content{
 .ctn-input .fielsetInput{
     color: white;
 }
-
-/*style panier */
+.load_connexion{
+    display:none;
+}
