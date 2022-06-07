@@ -539,5 +539,16 @@ footer .navigation-content{
 .ctn-input .fielsetInput{
     color: white;
 }
-
+.ctn-element-view{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5)
+}
+.ctn-element-view .ctnProdView{
+    width: 300px;
+    margin: auto;
+}
 /*style panier */
