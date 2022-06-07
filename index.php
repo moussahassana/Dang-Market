@@ -53,7 +53,7 @@
         <ul>
             <li><a data-favoris="0" href="php/Myfavoris.php">Voir mes favoris</a></li>
         </ul>
-    </nav>
+    </nav>    
 </div>
 <form class="ctn-user-element" action="userUpdate.php" method="POST">
     <div class="ctn-input">

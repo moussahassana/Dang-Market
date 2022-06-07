@@ -47,4 +47,4 @@ function chercher(e) {
             listNomProd[i].parentNode.style.display='none';
         }
     }
-}
+}       
