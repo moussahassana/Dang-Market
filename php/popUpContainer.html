@@ -1,0 +1,31 @@
+<div class="ctn-user-logo">
+    <div class="ctn_logo_element">
+        <input type="file" name="file" id="idfile" accept="*/.jpg,.png,.jpeg,.gif,.bmp,.svg,.ico" onchange="preview();"/>
+        <img src="images/logo-user.png" class="user_icon" alt="user logo">
+        <div class="bgImg"></div>	
+        <img class="ic_camera" src="images/camera.png"/>
+    </div>
+    <nav>
+        <ul>
+            <li><a data-favoris="0" href="php/Myfavoris.php">Voir mes favoris</a></li>
+        </ul>
+    </nav>
+</div>
+<form class="ctn-user-element" action="userUpdate.php" method="POST">
+    <div class="ctn-input">
+        <label class="fielsetInput" for="idfirstpassword">Username</label>
+        <input type="text" value="user">
+    </div>
+    <div class="ctn-input">
+        <label class="fielsetInput" for="idfirstpassword">password</label>
+        <input type="text" value="user">
+    </div>
+    <div class="btn-action">
+        <button class="save-btn" type="submit">Ok</button>
+        <input type="button" class="cancel-btn" onclick="closePopup();" value="Annuler"/>
+    </div>
+</form>
+<script>
+    
+    
+</script>
