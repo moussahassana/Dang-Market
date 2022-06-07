@@ -36,3 +36,15 @@ function revalLogin() {
     logIn.style.display="block";
     sign.style.display="none";
 }
+function chercher(e) {
+    var listNomProd=document.getElementsByClassName('nom_prod');
+    for (let i = 0; i < listNomProd.length; i++) {
+        val=listNomProd[i].innerHTML;
+        val=val.toLowerCase();
+        if(val.indexOf(e.value.toLowerCase())>-1){
+            listNomProd[i].parentNode.style.display='';
+        }else{
+            listNomProd[i].parentNode.style.display='none';
+        }
+    }
+}

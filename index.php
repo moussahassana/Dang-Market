@@ -94,8 +94,8 @@
         </header>
         <a href="php/panier.php"><div data-count="<?= $nbrprodpanier?>" class="panier container"></div></a>
         <div class="ctn-bar-recherche">
-            <input type="search" name="search" id="idsearch" placeholder="rechercher ..." onChange="chercher(this)"/>
-            <button>rechercher</button>
+            <input type="search" name="search" id="idsearch" placeholder="rechercher ..." onChange="chercher(this);"/>
+            <button onclick='chercher(document.getElementById("idsearch"));'>rechercher</button>
         </div>
         <nav class="list_categorie">
             <ul class="container"> 
